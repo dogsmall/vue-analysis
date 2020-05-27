@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="mount-point"></div>
+  <div id="mount-point2"></div>
+</body>
+<script>
+  var componentA = {
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+    data: function () {
+      return {
+        firstName: 'Walter',
+        lastName: 'White',
+        alias: 'Heisenberg'
+      }
+    }
+  }
+  debugger
+  var Profile = Vue.extend(componentA)
+  var Profile2 = Vue.extend(componentA)
+  console.log(Profile)
+  console.log(Profile2)
+  // 创建 Profile 实例，并挂载到一个元素上。
+  new Profile().$mount('#mount-point')
+  new Profile2().$mount('#mount-point2')
+</script>
+
+</html>

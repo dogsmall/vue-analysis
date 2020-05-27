@@ -278,12 +278,14 @@ function checkComponents (options: Object) {
 
 export function validateComponentName (name: string) {
   if (!new RegExp(`^[a-zA-Z][\\-\\.0-9_${unicodeRegExp.source}]*$`).test(name)) {
+    // '组件名称无效：组件名称应符合html5规范中的有效自定义元素名。'
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
     )
   }
   if (isBuiltInTag(name) || config.isReservedTag(name)) {
+    // 不要使用内置或保留的HTML元素作为组件
     warn(
       'Do not use built-in or reserved HTML elements as component ' +
       'id: ' + name
