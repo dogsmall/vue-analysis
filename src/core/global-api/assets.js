@@ -37,10 +37,11 @@ export function initAssetRegisters(Vue: GlobalAPI) {
         // 举个例子,如果是我们的button按钮,走到这一步的时候,在Vue.options上是:
         // {
         //   components:{
-        //     izk-button:Button;
+        //     myButton:Button;
         //   }
         // }
-        // 这个是在Vue原型链上,所以我们在所有地方都能直接使用我们的<izk-button></izk-button>
+        // 这个是在Vue原型链上,所以我们在所有地方都能直接使用我们的<myButton></myButton>
+        // definition是个class
         this.options[type + "s"][id] = definition;
         // 返回的是组件类
         return definition;

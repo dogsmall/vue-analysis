@@ -87,6 +87,7 @@ export function initExtend (Vue: GlobalAPI) {
     Sub.sealedOptions = extend({}, Sub.options)
 
     // cache constructor
+    // 这个时候extendOptions._Ctor就有值了
     cachedCtors[SuperId] = Sub
     return Sub
   }

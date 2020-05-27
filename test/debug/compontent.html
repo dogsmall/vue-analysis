@@ -10,12 +10,10 @@
 
 <body>
   <div id="app">
-    <button-counter></button-counter>
   </div>
 </body>
 <script>
-  debugger
-  Vue.component("button-counter", {
+  const buttonCounter = Vue.component("button-counter", {
     data: function () {
       return {
         count: 0,
@@ -24,8 +22,13 @@
     template:
       '<button v-on:click="count++">You clicked me {{ count }} times.</button>',
   });
-  debugger
-  new Vue({ el: "#app" });
+  const App = Vue.component('app',{
+    render:h=>h(buttonCounter),
+    components:{
+      "button-counter":buttonCounter
+    }
+  })
+  new Vue({ el: "#app",render: h => h(App) });
 </script>
 
 </html>
