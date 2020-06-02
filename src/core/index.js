@@ -3,8 +3,10 @@ import { initGlobalAPI } from './global-api/index'
 import { isServerRendering } from 'core/util/env'
 import { FunctionalRenderContext } from 'core/vdom/create-functional-component'
 
+// 公共api Vue.xxx
 initGlobalAPI(Vue)
 
+// 看起来都是服务端渲染的逻辑
 Object.defineProperty(Vue.prototype, '$isServer', {
   get: isServerRendering
 })

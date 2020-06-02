@@ -31,10 +31,15 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
+  // 没有render的时候执行,这也是为什么这个版本是带编译的版本,且需要扩展$mount的原因
+  // 如果是经过vue-loader编译过后的应该是使用runtime-only的版本,不需要编译了
   if (!options.render) {
     let template = options.template
+    // 有template的时候
+    // https://cn.vuejs.org/v2/api/#template
     if (template) {
       if (typeof template === 'string') {
+      // 如果值以 # 开始，则它将被用作选择符，并使用匹配元素的 innerHTML 作为模板。常用的技巧是用 <script type="x-template"> 包含模板。
         if (template.charAt(0) === '#') {
           template = idToTemplate(template)
           /* istanbul ignore if */
@@ -61,7 +66,7 @@ Vue.prototype.$mount = function (
       if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile')
       }
-
+      // 将template转成render函数
       const { render, staticRenderFns } = compileToFunctions(template, {
         outputSourceRange: process.env.NODE_ENV !== 'production',
         shouldDecodeNewlines,
@@ -83,7 +88,7 @@ Vue.prototype.$mount = function (
 }
 
 /**
- * Get outerHTML of elements, taking care
+Get outerHTML of elements, taking care
  * of SVG elements in IE as well.
  */
 function getOuterHTML (el: Element): string {
@@ -95,7 +100,7 @@ function getOuterHTML (el: Element): string {
     return container.innerHTML
   }
 }
-
+// 编译方法
 Vue.compile = compileToFunctions
 
 export default Vue

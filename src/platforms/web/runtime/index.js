@@ -27,23 +27,28 @@ Vue.config.getTagNamespace = getTagNamespace
 Vue.config.isUnknownElement = isUnknownElement
 
 // install platform runtime directives & components
+// 指令和公共components
 extend(Vue.options.directives, platformDirectives)
 extend(Vue.options.components, platformComponents)
 
 // install platform patch function
+// 安装patch方法
 Vue.prototype.__patch__ = inBrowser ? patch : noop
 
 // public mount method
+// 公共mount方法
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
 ): Component {
   el = el && inBrowser ? query(el) : undefined
+  // 看名字应该在之后的组件模块也会遇到,应该是把组件挂在到某个值
   return mountComponent(this, el, hydrating)
 }
 
 // devtools global hook
 /* istanbul ignore next */
+// 浏览器Vue devtools 插件
 if (inBrowser) {
   setTimeout(() => {
     if (config.devtools) {

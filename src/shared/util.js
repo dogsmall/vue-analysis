@@ -102,6 +102,7 @@ export function toNumber (val: string): number | string {
 /**
  * Make a map and return a function for checking if a key
  * is in that map.
+ * 根据传进来的str创建一个map 返回一个function用来检查这个可以是不是在这个map里面
  */
 export function makeMap (
   str: string,
@@ -119,6 +120,7 @@ export function makeMap (
 
 /**
  * Check if a tag is a built-in tag.
+ * 检查标签是否为内置标签。slot和component都是能动态改变的
  */
 export const isBuiltInTag = makeMap('slot,component', true)
 
@@ -149,6 +151,7 @@ export function hasOwn (obj: Object | Array<*>, key: string): boolean {
 
 /**
  * Create a cached version of a pure function.
+ * 创建纯函数的缓存版本
  */
 export function cached<F: Function> (fn: F): F {
   const cache = Object.create(null)

@@ -1,6 +1,6 @@
 /* @flow */
 
-import { makeMap, isBuiltInTag, cached, no } from 'shared/util'
+import { makeMap, isBuiltInTag, cached, no } from '../shared/util'
 
 let isStaticKey
 let isPlatformReservedTag

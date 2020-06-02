@@ -2,10 +2,6 @@
   "name": "vue",
   "version": "2.6.11",
   "description": "Reactive, component-oriented view layer for modern web interfaces.",
-  "main": "dist/vue.runtime.common.js",
-  "module": "dist/vue.runtime.esm.js",
-  "unpkg": "dist/vue.js",
-  "jsdelivr": "dist/vue.js",
   "typings": "types/index.d.ts",
   "files": [
     "src",
@@ -43,19 +39,11 @@
     "release:note": "node scripts/gen-release-note.js",
     "commit": "git-cz"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verify-commit-msg.js"
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
       "git add"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vuejs/vue.git"
   },
   "keywords": [
     "vue"
@@ -141,10 +129,5 @@
     "weex-js-runtime": "^0.23.6",
     "weex-styler": "^0.3.0",
     "yorkie": "^2.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

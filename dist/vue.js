@@ -4959,6 +4959,7 @@
 
   function initMixin (Vue) {
     Vue.prototype._init = function (options) {
+      debugger
       var vm = this;
       // a uid
       vm._uid = uid$3++;
@@ -4974,6 +4975,7 @@
       // a flag to avoid this being observed
       vm._isVue = true;
       // merge options
+      // 如果是内部组件,_isComponent是true
       if (options && options._isComponent) {
         // optimize internal component instantiation
         // since dynamic options merging is pretty slow, and none of the
@@ -5213,11 +5215,15 @@
     /**
      * Create asset registration methods.
      */
+    
     ASSET_TYPES.forEach(function (type) {
+      debugger
       Vue[type] = function (
         id,
         definition
       ) {
+        console.log(id,definition)
+        console.log(this.options)
         if (!definition) {
           return this.options[type + 's'][id]
         } else {
@@ -5233,6 +5239,7 @@
             definition = { bind: definition, update: definition };
           }
           this.options[type + 's'][id] = definition;
+          console.log(this.options)
           return definition
         }
       };
