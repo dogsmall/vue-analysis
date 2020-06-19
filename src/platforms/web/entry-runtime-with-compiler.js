@@ -7,7 +7,7 @@ import { mark, measure } from 'core/util/perf'
 import Vue from './runtime/index'
 import { query } from './util/index'
 import { compileToFunctions } from './compiler/index'
-import { shouldDecodeNewlines, shouldDecodeNewlinesForHref } from './util/compat'
+import { shouldDecodeNewlines, shouldDecodeNewlinesForHref } from './util/compat' // 兼容性代码,针对浏览器encodes
 
 const idToTemplate = cached(id => {
   const el = query(id)
@@ -67,12 +67,13 @@ Vue.prototype.$mount = function (
         mark('compile')
       }
       // 将template转成render函数
+      // 这是第一步
       const { render, staticRenderFns } = compileToFunctions(template, {
         outputSourceRange: process.env.NODE_ENV !== 'production',
         shouldDecodeNewlines,
         shouldDecodeNewlinesForHref,
-        delimiters: options.delimiters,
-        comments: options.comments
+        delimiters: options.delimiters,// 改变纯文本插入分隔符。
+        comments: options.comments // 当设为 true 时，将会保留且渲染模板中的 HTML 注释。默认行为是舍弃它们
       }, this)
       options.render = render
       options.staticRenderFns = staticRenderFns

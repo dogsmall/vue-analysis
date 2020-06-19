@@ -18,10 +18,15 @@ export const createCompiler = createCompilerCreator(function baseCompile (
   template: string,
   options: CompilerOptions
 ): CompiledResult {
+  // 编译器的编译原理大多分为三个阶段: 解析、转换以及代码生成
+  // 解析 生成抽象语法树(AST)
   const ast = parse(template.trim(), options)
   if (options.optimize !== false) {
+    // 静态
     optimize(ast, options)
   }
+  // 代码生成
+  // 生成 render
   const code = generate(ast, options)
   return {
     ast,
